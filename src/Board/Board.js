@@ -10,14 +10,21 @@ const Cell = ({ size, position }) => (
 );
 
 export const Board = ({ height, width }) => {
-  const { cellSize, boardSize, headPosition } = useBoard({ height, width });
+  const {
+    cellSize, boardSize, headPosition, tailCells,
+  } = useBoard({ height, width });
 
   return (
     <View style={[styles.container, {
       height, width,
     }]}
     >
-      <View style={[styles.board, { height: boardSize, width: boardSize }]}><Cell size={cellSize} position={headPosition} /></View>
+      <View style={[styles.board, { height: boardSize, width: boardSize }]}>
+        <Cell size={cellSize} position={headPosition} />
+        {tailCells.map((position) => (
+          <Cell size={cellSize} position={position} />
+        ))}
+      </View>
     </View>
   );
 };
