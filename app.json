@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Snake",
-    "slug": "tech.bam.dojo.snake",
+    "slug": "dojo-snake",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
