@@ -1,14 +1,16 @@
-import { useGameLoop } from './useGameLoop';
+import { GRID_SIZE } from '../constants';
 
-export const useBoard = ({ height, width }) => {
+export const useBoard = ({
+  height, width, head, tail,
+}) => {
   const boardSize = Math.min(height, width);
-  const GRID_SIZE = 30;
+
   const cellSize = boardSize / GRID_SIZE;
 
   const computePosition = ({ left, top }) => ({
     left: left * cellSize, top: top * cellSize,
   });
-  const { head, tail } = useGameLoop(GRID_SIZE);
+
   const headPosition = computePosition(head);
   const tailCells = tail.map(computePosition);
 

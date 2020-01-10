@@ -4,11 +4,13 @@ import { useHome } from './useHome';
 import { Board } from '../Board/Board';
 
 export const Home = () => {
-  const { height, width } = useHome();
+  const {
+    height, width, tail, head,
+  } = useHome();
 
   return (
     <View style={styles.container}>
-      <Board height={height / 2} width={width} />
+      <Board height={height / 2} width={width} head={head} tail={tail} />
     </View>
   );
 };

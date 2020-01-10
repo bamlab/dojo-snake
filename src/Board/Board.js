@@ -9,10 +9,14 @@ const Cell = ({ size, position }) => (
   />
 );
 
-export const Board = ({ height, width }) => {
+export const Board = ({
+  height, width, head, tail,
+}) => {
   const {
     cellSize, boardSize, headPosition, tailCells,
-  } = useBoard({ height, width });
+  } = useBoard({
+    height, width, head, tail,
+  });
 
   return (
     <View style={[styles.container, {

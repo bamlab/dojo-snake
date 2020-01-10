@@ -5,7 +5,7 @@ const LOOP_INTERVAL = 200;
 const initialTail = [{ left: 0, top: 0 }, { left: 1, top: 0 }];
 const initialHead = { left: 2, top: 0 };
 
-export const useGameLoop = (gridSize) => {
+export const useGameLoop = () => {
   const [head, setHead] = useState(initialHead);
   const [tail, setTail] = useState(initialTail);
   const [xSpeed, setXSpeed] = useState(1);
