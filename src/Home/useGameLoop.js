@@ -10,13 +10,41 @@ export const useGameLoop = () => {
   const [tail, setTail] = useState(initialTail);
   const [xSpeed, setXSpeed] = useState(1);
   const [ySpeed, setYSpeed] = useState(0);
+  const goLeft = () => {
+    if (xSpeed !== -1 && xSpeed !== 1) {
+      setXSpeed(-1);
+      setYSpeed(0);
+    }
+  };
+  const goRight = () => {
+    if (xSpeed !== -1 && xSpeed !== 1) {
+      setXSpeed(1);
+      setYSpeed(0);
+    }
+  };
+  const goUp = () => {
+    if (ySpeed !== -1 && ySpeed !== 1) {
+      setXSpeed(0);
+      setYSpeed(-1);
+    }
+  };
+  const goDown = () => {
+    if (ySpeed !== -1 && ySpeed !== 1) {
+      setXSpeed(0);
+      setYSpeed(1);
+    }
+  };
+
+  const [running, setRunning] = useState(true);
 
   const computeNextHead = () => {
-    setTail((currentTail) => {
-      const [_, ...rest] = currentTail;
-      return [...rest, head];
-    });
-    setHead((currentHead) => ({ top: currentHead.top + ySpeed, left: currentHead.left + xSpeed }));
+    if (running) {
+      setTail((currentTail) => {
+        const [_, ...rest] = currentTail;
+        return [...rest, head];
+      });
+      setHead((currentHead) => ({ top: currentHead.top + ySpeed, left: currentHead.left + xSpeed }));
+    }
   };
 
   useEffect(() => {
@@ -24,7 +52,9 @@ export const useGameLoop = () => {
       computeNextHead,
       LOOP_INTERVAL,
     );
-  }, [head]);
+  }, [head, running]);
 
-  return { head, tail };
+  return {
+    head, tail, setRunning, goDown, goLeft, goRight, goUp,
+  };
 };
