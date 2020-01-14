@@ -6,12 +6,22 @@ const LOOP_INTERVAL = 200;
 
 const initialTail = [{ left: 0, top: 0 }, { left: 1, top: 0 }];
 const initialHead = { left: 2, top: 0 };
+const initialApple = { left: 10, top: 10 };
+
+const areSamePosition = ({ top, left }, { top2, left2 }) => top === top2 && left === left2;
 
 export const useGameLoop = () => {
   const [head, setHead] = useState(initialHead);
   const [tail, setTail] = useState(initialTail);
   const [xSpeed, setXSpeed] = useState(1);
   const [ySpeed, setYSpeed] = useState(0);
+
+  const [apple, setApple] = useState(initialApple);
+  const generateApple = () => {
+    const appleTop = Math.floor(Math.random() * (GRID_SIZE - 1));
+    const appleLeft = Math.floor(Math.random() * (GRID_SIZE - 1));
+    setApple({ top: appleTop, left: appleLeft });
+  };
 
   const reset = () => {
     setRunning(false);
@@ -75,6 +85,6 @@ export const useGameLoop = () => {
   }, [head, running]);
 
   return {
-    head, tail, setRunning, goDown, goLeft, goRight, goUp,
+    head, tail, setRunning, goDown, goLeft, goRight, goUp, apple,
   };
 };

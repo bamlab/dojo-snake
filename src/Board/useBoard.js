@@ -1,7 +1,7 @@
 import { GRID_SIZE } from '../constants';
 
 export const useBoard = ({
-  height, width, head, tail,
+  height, width, head, tail, apple,
 }) => {
   const boardSize = Math.min(height, width);
 
@@ -12,9 +12,10 @@ export const useBoard = ({
   });
 
   const headPosition = computePosition(head);
+  const applePosition = computePosition(apple);
   const tailCells = tail.map(computePosition);
 
   return {
-    cellSize, boardSize, headPosition, tailCells,
+    cellSize, boardSize, headPosition, tailCells, applePosition,
   };
 };
