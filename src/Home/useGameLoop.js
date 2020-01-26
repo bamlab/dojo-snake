@@ -2,13 +2,22 @@ import { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { GRID_SIZE } from '../constants';
 
-const LOOP_INTERVAL = 200;
+const LOOP_INTERVAL = 100;
 
-const initialTail = [{ left: 0, top: 0 }, { left: 1, top: 0 }];
+const initialTail = [
+  { left: 0, top: 0 },
+  { left: 1, top: 0 },
+];
 const initialHead = { left: 2, top: 0 };
 const initialApple = { left: 10, top: 10 };
 
-const areSamePosition = ({ top, left }, { top2, left2 }) => top === top2 && left === left2;
+const areSamePosition = ({ top, left }, { top: top2, left: left2 }) => top === top2 && left === left2;
+const isIncludedInArray = ({ top, left }, list) => {
+  for (const element of list) {
+    if (top === element.top && left === element.left) return true;
+  }
+  return false;
+};
 
 export const useGameLoop = () => {
   const [head, setHead] = useState(initialHead);
@@ -29,10 +38,12 @@ export const useGameLoop = () => {
     setTail(initialTail);
     setXSpeed(1);
     setYSpeed(0);
-    Alert.alert('Game over', 'You lame loser', [{
-      text: 'Retry',
-      onPress: () => setRunning(true),
-    }]);
+    Alert.alert('Game over', 'You lame loser', [
+      {
+        text: 'Retry',
+        onPress: () => setRunning(true),
+      },
+    ]);
   };
 
   const goLeft = () => {
@@ -65,26 +76,45 @@ export const useGameLoop = () => {
   const computeNextHead = () => {
     if (running) {
       const nextHead = { top: head.top + ySpeed, left: head.left + xSpeed };
-      if (nextHead.top >= GRID_SIZE || nextHead.left >= GRID_SIZE || nextHead.top < 0 || nextHead.left < 0) {
+      const shouldGrow = areSamePosition(nextHead, apple);
+      if (
+        nextHead.top >= GRID_SIZE
+        || nextHead.left >= GRID_SIZE
+        || nextHead.top < 0
+        || nextHead.left < 0
+      ) {
+        reset();
+        return;
+      }
+      if (isIncludedInArray(nextHead, tail)) {
         reset();
         return;
       }
       setTail((currentTail) => {
+        if (shouldGrow) return [...currentTail, head];
         const [_, ...rest] = currentTail;
         return [...rest, head];
       });
-      setHead((currentHead) => ({ top: currentHead.top + ySpeed, left: currentHead.left + xSpeed }));
+      setHead((currentHead) => ({
+        top: currentHead.top + ySpeed,
+        left: currentHead.left + xSpeed,
+      }));
+      if (shouldGrow) generateApple();
     }
   };
 
   useEffect(() => {
-    setTimeout(
-      computeNextHead,
-      LOOP_INTERVAL,
-    );
+    setTimeout(computeNextHead, LOOP_INTERVAL);
   }, [head, running]);
 
   return {
-    head, tail, setRunning, goDown, goLeft, goRight, goUp, apple,
+    head,
+    tail,
+    setRunning,
+    goDown,
+    goLeft,
+    goRight,
+    goUp,
+    apple,
   };
 };
