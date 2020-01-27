@@ -26,8 +26,8 @@ export const Board = ({
       <View style={[styles.board, { height: boardSize, width: boardSize }]}>
         <Cell size={cellSize} position={applePosition} isApple />
         <Cell size={cellSize} position={headPosition} />
-        {tailCells.map((position) => (
-          <Cell size={cellSize} position={position} />
+        {tailCells.map((position, index) => (
+          <Cell size={cellSize} position={position} key={index} />
         ))}
       </View>
     </View>
@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   board: {
-    backgroundColor: 'black',
+    borderColor: 'red',
+    borderWidth: 1,
   },
   cell: {
     position: 'absolute',
