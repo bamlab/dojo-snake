@@ -7,6 +7,7 @@ const LOOP_INTERVAL = 100;
 const initialTail = [
   { left: 0, top: 0 },
   { left: 1, top: 0 },
+
 ];
 const initialHead = { left: 2, top: 0 };
 const initialApple = { left: 10, top: 10 };
@@ -24,6 +25,7 @@ export const useGameLoop = () => {
   const [tail, setTail] = useState(initialTail);
   const [xSpeed, setXSpeed] = useState(1);
   const [ySpeed, setYSpeed] = useState(0);
+  const [hasAlreadyTurned, setHasAlreadyTurned] = useState(false);
 
   const [apple, setApple] = useState(initialApple);
   const generateApple = () => {
@@ -47,27 +49,31 @@ export const useGameLoop = () => {
   };
 
   const goLeft = () => {
-    if (xSpeed !== -1 && xSpeed !== 1) {
+    if (xSpeed !== -1 && xSpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(-1);
       setYSpeed(0);
+      setHasAlreadyTurned(true);
     }
   };
   const goRight = () => {
-    if (xSpeed !== -1 && xSpeed !== 1) {
+    if (xSpeed !== -1 && xSpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(1);
       setYSpeed(0);
+      setHasAlreadyTurned(true);
     }
   };
   const goUp = () => {
-    if (ySpeed !== -1 && ySpeed !== 1) {
+    if (ySpeed !== -1 && ySpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(0);
       setYSpeed(-1);
+      setHasAlreadyTurned(true);
     }
   };
   const goDown = () => {
-    if (ySpeed !== -1 && ySpeed !== 1) {
+    if (ySpeed !== -1 && ySpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(0);
       setYSpeed(1);
+      setHasAlreadyTurned(true);
     }
   };
 
@@ -75,6 +81,7 @@ export const useGameLoop = () => {
 
   const computeNextHead = () => {
     if (running) {
+      setHasAlreadyTurned(false);
       const nextHead = { top: head.top + ySpeed, left: head.left + xSpeed };
       const shouldGrow = areSamePosition(nextHead, apple);
       if (
