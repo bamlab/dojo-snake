@@ -5,6 +5,8 @@ import { GRID_SIZE } from '../constants';
 // The snake position will be updated every 100 ms
 const LOOP_INTERVAL = 100;
 
+const IS_INITIALLY_RUNNING = false;
+
 /**
  * Each cell is defined by a left and a top parameter
  * We have on cell for the head
@@ -61,6 +63,7 @@ export const useGameLoop = () => {
   };
 
   const goLeft = () => {
+    // We check that the snake is not going horizontally and that it did not already turn in the last iteration
     if (xSpeed !== -1 && xSpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(-1);
       setYSpeed(0);
@@ -68,6 +71,7 @@ export const useGameLoop = () => {
     }
   };
   const goRight = () => {
+    // We check that the snake is not going horizontally and that it did not already turn in the last iteration
     if (xSpeed !== -1 && xSpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(1);
       setYSpeed(0);
@@ -75,6 +79,7 @@ export const useGameLoop = () => {
     }
   };
   const goUp = () => {
+    // We check that the snake is not going vertically and that it did not already turn in the last iteration
     if (ySpeed !== -1 && ySpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(0);
       setYSpeed(-1);
@@ -82,6 +87,7 @@ export const useGameLoop = () => {
     }
   };
   const goDown = () => {
+    // We check that the snake is not going vertically and that it did not already turn in the last iteration
     if (ySpeed !== -1 && ySpeed !== 1 && !hasAlreadyTurned) {
       setXSpeed(0);
       setYSpeed(1);
@@ -89,7 +95,7 @@ export const useGameLoop = () => {
     }
   };
 
-  const [running, setRunning] = useState(true);
+  const [running, setRunning] = useState(IS_INITIALLY_RUNNING);
 
   // This function hold all the logic to compute the next iteration
   const computeNextHead = () => {

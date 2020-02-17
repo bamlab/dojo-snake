@@ -4,6 +4,7 @@ import { Dimensions } from 'react-native';
 import { useGameLoop } from './useGameLoop';
 
 export const useHome = () => {
+  // Retrieve screen height and widtth
   const { height, width } = Dimensions.get('window');
 
   const {

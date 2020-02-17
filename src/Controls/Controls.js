@@ -13,7 +13,9 @@ export const Controls = ({
       <DirectionButton onPress={goLeft} />
       <DirectionButton onPress={goRight} />
     </View>
-    <View style={styles.endRow}><DirectionButton onPress={goDown} /></View>
+    <View style={styles.endRow}>
+      <DirectionButton onPress={goDown} />
+    </View>
   </View>
 );
 

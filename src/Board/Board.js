@@ -9,6 +9,13 @@ const Cell = ({ size, position, isApple }) => (
   />
 );
 
+/**
+ * height is the height of the component
+ * width is the width of the component
+ * head is the position of the head of the snake
+ * tail is a list of position for every cell of the snake's tail
+ * apple is the position of the apple
+ */
 export const Board = ({
   height, width, head, tail, apple,
 }) => {

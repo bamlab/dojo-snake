@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Alert, SafeAreaView } from 'react-native';
 import { useHome } from './useHome';
 import { Board } from '../Board/Board';
 import { Controls } from '../Controls/Controls';
@@ -10,10 +10,10 @@ export const Home = () => {
   } = useHome();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Board height={height / 2} width={width} head={head} tail={tail} apple={apple} />
-      <Controls goLeft={goLeft} goRight={goRight} goUp={goUp} goDown={goDown} />
-    </View>
+      <Controls goUp={() => Alert.alert('Test')} />
+    </SafeAreaView>
   );
 };
 
