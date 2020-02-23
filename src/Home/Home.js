@@ -30,7 +30,7 @@ export const Home = () => {
       {userState === 'PLAYING' && (
         <>
           <Board height={height / 2} width={width} head={head} tail={tail} apple={apple} />
-          <Controls goUp={() => Alert.alert('Test')} />
+          <Controls goUp={goUp} goDown={goDown} goLeft={goLeft} goRight={goRight} />
         </>
       )}
       {userState === 'TYPING_NAME' && (
