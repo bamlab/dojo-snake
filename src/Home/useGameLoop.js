@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
 import { GRID_SIZE } from '../constants';
 
 // The snake position will be updated every 100 ms
@@ -48,10 +47,10 @@ export const useGameLoop = () => {
   };
 
   const start = () => setRunning(true);
+  const stop = () => setRunning(false);
 
   // Reset the game
   const reset = () => {
-    setRunning(false);
     setHead(initialHead);
     setTail(initialTail);
     setXSpeed(1);
@@ -112,12 +111,12 @@ export const useGameLoop = () => {
         || nextHead.top < 0
         || nextHead.left < 0
       ) {
-        reset();
+        stop();
         return;
       }
       // If the snake will eat itself, we lose
       if (isIncludedInArray(nextHead, tail)) {
-        reset();
+        stop();
         return;
       }
       // We compute the new tail of the snake
@@ -151,5 +150,6 @@ export const useGameLoop = () => {
     reset,
     start,
     running,
+    stop,
   };
 };

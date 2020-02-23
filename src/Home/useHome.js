@@ -22,6 +22,8 @@ export const useHome = () => {
     apple,
     start,
     running,
+    reset,
+    stop,
   } = useGameLoop();
 
   const updateScores = () => {
@@ -40,6 +42,7 @@ export const useHome = () => {
 
   const startGame = () => {
     setUserState('PLAYING');
+    reset();
     start();
   };
 
