@@ -4,7 +4,7 @@ import { GRID_SIZE } from '../constants';
 // The snake position will be updated every 100 ms
 const LOOP_INTERVAL = 100;
 
-const IS_INITIALLY_RUNNING = true;
+const IS_INITIALLY_RUNNING = false;
 
 /**
  * Each cell is defined by a left and a top parameter
@@ -47,7 +47,6 @@ export const useGameLoop = () => {
   };
 
   const start = () => setRunning(true);
-  const stop = () => setRunning(false);
 
   // Reset the game
   const reset = () => {
@@ -55,13 +54,9 @@ export const useGameLoop = () => {
     setTail(initialTail);
     setXSpeed(1);
     setYSpeed(0);
-    // Alert.alert('Game over', 'You lame loser', [
-    //   {
-    //     text: 'Retry',
-    //     onPress: start,
-    //   },
-    // ]);
   };
+
+  const stop = () => setRunning(false);
 
   const goLeft = () => {
     // We check that the snake is not going horizontally and that it did not already turn in the last iteration
@@ -103,7 +98,6 @@ export const useGameLoop = () => {
     if (running) {
       setHasAlreadyTurned(false);
       const nextHead = { top: head.top + ySpeed, left: head.left + xSpeed };
-      const shouldGrow = areSamePosition(nextHead, apple);
       // If the snake will leave the board, we lose
       if (
         nextHead.top >= GRID_SIZE
@@ -121,7 +115,6 @@ export const useGameLoop = () => {
       }
       // We compute the new tail of the snake
       setTail((currentTail) => {
-        if (shouldGrow) return [...currentTail, head];
         const [_, ...rest] = currentTail;
         return [...rest, head];
       });
@@ -130,7 +123,6 @@ export const useGameLoop = () => {
         top: currentHead.top + ySpeed,
         left: currentHead.left + xSpeed,
       }));
-      if (shouldGrow) generateApple();
     }
   };
 
@@ -142,14 +134,5 @@ export const useGameLoop = () => {
     head,
     tail,
     setRunning,
-    goDown,
-    goLeft,
-    goRight,
-    goUp,
-    apple,
-    reset,
-    start,
-    running,
-    stop,
   };
 };

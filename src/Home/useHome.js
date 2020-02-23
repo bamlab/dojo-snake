@@ -15,15 +15,7 @@ export const useHome = () => {
   const {
     head,
     tail,
-    goDown,
-    goLeft,
-    goRight,
-    goUp,
     apple,
-    start,
-    running,
-    reset,
-    stop,
   } = useGameLoop();
 
   const updateScores = () => {
@@ -35,18 +27,6 @@ export const useHome = () => {
   };
 
   useEffect(() => {
-    if (running === false) {
-      setUserState('TYPING_NAME');
-    }
-  }, [running]);
-
-  const startGame = () => {
-    setUserState('PLAYING');
-    reset();
-    start();
-  };
-
-  useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   }, []);
 
@@ -55,17 +35,12 @@ export const useHome = () => {
     width,
     head,
     tail,
-    goDown,
-    goLeft,
-    goRight,
-    goUp,
     apple,
     name,
     setName,
     updateScores,
     userState,
     setUserState,
-    startGame,
     scores,
   };
 };
