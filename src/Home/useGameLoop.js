@@ -5,7 +5,7 @@ import { GRID_SIZE } from '../constants';
 // The snake position will be updated every 100 ms
 const LOOP_INTERVAL = 100;
 
-const IS_INITIALLY_RUNNING = false;
+const IS_INITIALLY_RUNNING = true;
 
 /**
  * Each cell is defined by a left and a top parameter
@@ -47,6 +47,8 @@ export const useGameLoop = () => {
     setApple({ top: appleTop, left: appleLeft });
   };
 
+  const start = () => setRunning(true);
+
   // Reset the game
   const reset = () => {
     setRunning(false);
@@ -54,12 +56,12 @@ export const useGameLoop = () => {
     setTail(initialTail);
     setXSpeed(1);
     setYSpeed(0);
-    Alert.alert('Game over', 'You lame loser', [
-      {
-        text: 'Retry',
-        onPress: () => setRunning(true),
-      },
-    ]);
+    // Alert.alert('Game over', 'You lame loser', [
+    //   {
+    //     text: 'Retry',
+    //     onPress: start,
+    //   },
+    // ]);
   };
 
   const goLeft = () => {
@@ -146,5 +148,8 @@ export const useGameLoop = () => {
     goRight,
     goUp,
     apple,
+    reset,
+    start,
+    running,
   };
 };
