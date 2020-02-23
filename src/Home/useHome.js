@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ScreenOrientation } from 'expo';
 import { Dimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { useGameLoop } from './useGameLoop';
 
 export const useHome = () => {
