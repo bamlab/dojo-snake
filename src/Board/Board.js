@@ -3,9 +3,16 @@ import { View, StyleSheet } from 'react-native';
 import { useBoard } from './useBoard';
 
 const Cell = ({ size, position, isApple }) => (
-  <View style={[styles.cell, {
-    height: size, width: size, ...position, backgroundColor: isApple ? 'red' : 'green',
-  }]}
+  <View
+    style={[
+      styles.cell,
+      {
+        height: size,
+        width: size,
+        ...position,
+        backgroundColor: isApple ? 'red' : 'green',
+      },
+    ]}
   />
 );
 
@@ -16,19 +23,24 @@ const Cell = ({ size, position, isApple }) => (
  * tail is a list of position for every cell of the snake's tail
  * apple is the position of the apple
  */
-export const Board = ({
-  height, width, head, tail, apple,
-}) => {
-  const {
-    cellSize, boardSize, headPosition, tailCells, applePosition,
-  } = useBoard({
-    height, width, head, tail, apple,
+export const Board = ({ height, width, head, tail, apple }) => {
+  const { cellSize, boardSize, headPosition, tailCells, applePosition } = useBoard({
+    height,
+    width,
+    head,
+    tail,
+    apple,
   });
 
   return (
-    <View style={[styles.container, {
-      height, width,
-    }]}
+    <View
+      style={[
+        styles.container,
+        {
+          height,
+          width,
+        },
+      ]}
     >
       <View style={[styles.board, { height: boardSize, width: boardSize }]}>
         <Cell size={cellSize} position={applePosition} isApple />

@@ -2,19 +2,17 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { DirectionButton } from './DirectionButton';
 
-export const Controls = ({
-  goRight, goLeft, goUp, goDown,
-}) => (
+export const Controls = ({ goRight, goLeft, goUp, goDown }) => (
   <View style={styles.container}>
     <View style={styles.endRow}>
-      <DirectionButton onPress={goUp || () => {}} />
+      <DirectionButton onPress={goUp} />
     </View>
     <View style={styles.centerRow}>
-      <DirectionButton onPress={goLeft || () => {}} />
-      <DirectionButton onPress={goRight || () => {}} />
+      <DirectionButton onPress={goLeft} />
+      <DirectionButton onPress={goRight} />
     </View>
     <View style={styles.endRow}>
-      <DirectionButton onPress={goDown || () => {}} />
+      <DirectionButton onPress={goDown} />
     </View>
   </View>
 );

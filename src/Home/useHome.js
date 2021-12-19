@@ -12,14 +12,10 @@ export const useHome = () => {
 
   const [userState, setUserState] = useState('PLAYING');
 
-  const {
-    head,
-    tail,
-    apple,
-  } = useGameLoop();
+  const { head, tail, apple } = useGameLoop();
 
   const updateScores = () => {
-    setScore((currentScores) => {
+    setScore(currentScores => {
       currentScores.push({ name, score: tail.length + 1 });
       return currentScores.sort((a, b) => a.score > b.score);
     });

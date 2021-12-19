@@ -19,7 +19,8 @@ const initialTail = [
 const initialHead = { left: 2, top: 0 };
 const initialApple = { left: 10, top: 10 };
 
-const areSamePosition = ({ top, left }, { top: top2, left: left2 }) => top === top2 && left === left2;
+const areSamePosition = ({ top, left }, { top: top2, left: left2 }) =>
+  top === top2 && left === left2;
 
 // Check if an element is included in a given array
 const isIncludedInArray = ({ top, left }, list) => {
@@ -100,10 +101,10 @@ export const useGameLoop = () => {
       const nextHead = { top: head.top + ySpeed, left: head.left + xSpeed };
       // If the snake will leave the board, we lose
       if (
-        nextHead.top >= GRID_SIZE
-        || nextHead.left >= GRID_SIZE
-        || nextHead.top < 0
-        || nextHead.left < 0
+        nextHead.top >= GRID_SIZE ||
+        nextHead.left >= GRID_SIZE ||
+        nextHead.top < 0 ||
+        nextHead.left < 0
       ) {
         stop();
         return;
@@ -114,12 +115,12 @@ export const useGameLoop = () => {
         return;
       }
       // We compute the new tail of the snake
-      setTail((currentTail) => {
+      setTail(currentTail => {
         const [_, ...rest] = currentTail;
         return [...rest, head];
       });
       // We move the head
-      setHead((currentHead) => ({
+      setHead(currentHead => ({
         top: currentHead.top + ySpeed,
         left: currentHead.left + xSpeed,
       }));
