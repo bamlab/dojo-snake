@@ -134,6 +134,7 @@ export const useGameLoop = () => {
   return {
     head,
     tail,
+    apple,
     setRunning,
   };
 };
