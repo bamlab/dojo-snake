@@ -114,16 +114,15 @@ export const useGameLoop = () => {
         stop();
         return;
       }
-      // We compute the new tail of the snake
+      // We compute the new tail :
       setTail(currentTail => {
-        const [_, ...rest] = currentTail;
-        return [...rest, head];
+        // We remove the last item because we moved forward - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice for slice definition
+        const newTail = currentTail.slice(1);
+        // We add the old head as now part of the tail
+        newTail.push(head);
       });
       // We move the head
-      setHead(currentHead => ({
-        top: currentHead.top + ySpeed,
-        left: currentHead.left + xSpeed,
-      }));
+      setHead(nextHead);
     }
   };
 
