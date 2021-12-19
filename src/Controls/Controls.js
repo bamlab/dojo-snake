@@ -4,14 +4,14 @@ import { DirectionButton } from './DirectionButton';
 
 export const Controls = ({ goRight, goLeft, goUp, goDown }) => (
   <View style={styles.container}>
-    <View style={styles.endRow}>
+    <View style={styles.top}>
       <DirectionButton onPress={goUp} />
     </View>
-    <View style={styles.centerRow}>
+    <View style={styles.center}>
       <DirectionButton onPress={goLeft} />
       <DirectionButton onPress={goRight} />
     </View>
-    <View style={styles.endRow}>
+    <View style={styles.bottom}>
       <DirectionButton onPress={goDown} />
     </View>
   </View>
@@ -19,16 +19,14 @@ export const Controls = ({ goRight, goLeft, goUp, goDown }) => (
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
-  },
-  endRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     flex: 1,
   },
-  centerRow: {
+  top: {
+  },
+  bottom: {
+  },
+  center: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
