@@ -1,11 +1,8 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, Text } from 'react-native';
 import { NOKIA_COLOR } from '../theme';
-import { useLockOrientation } from '../utils/useLockOrientation';
 
 export const Home = () => {
-  useLockOrientation();
-
   return (
     <SafeAreaView style={styles.container}>
       <Text>This is a snake to be </Text>
