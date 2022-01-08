@@ -34,20 +34,10 @@ export const useGameLoop = () => {
   const [head, setHead] = useState(initialHead);
   const [tail, setTail] = useState(initialTail);
 
-  // xSpeed and ySpeed define the horizontal and vertical speed of the snake
-  const [xSpeed, setXSpeed] = useState(1);
-  const [ySpeed, setYSpeed] = useState(0);
-  const [hasAlreadyTurned, setHasAlreadyTurned] = useState(false);
-
-  const [apple, setApple] = useState(initialApple);
-  // Compute new apple position
-  const generateApple = () => {
-    const appleTop = Math.floor(Math.random() * (GRID_SIZE - 1));
-    const appleLeft = Math.floor(Math.random() * (GRID_SIZE - 1));
-    setApple({ top: appleTop, left: appleLeft });
-  };
+  const [running, setRunning] = useState(IS_INITIALLY_RUNNING);
 
   const start = () => setRunning(true);
+  const stop = () => setRunning(false);
 
   // Reset the game
   const reset = () => {
@@ -61,6 +51,20 @@ export const useGameLoop = () => {
     reset();
     start();
   };
+
+  const [apple, setApple] = useState(initialApple);
+
+  // Compute new apple position
+  const generateApple = () => {
+    const appleTop = Math.floor(Math.random() * (GRID_SIZE - 1));
+    const appleLeft = Math.floor(Math.random() * (GRID_SIZE - 1));
+    setApple({ top: appleTop, left: appleLeft });
+  };
+
+  // xSpeed and ySpeed define the horizontal and vertical speed of the snake
+  const [xSpeed, setXSpeed] = useState(1);
+  const [ySpeed, setYSpeed] = useState(0);
+  const [hasAlreadyTurned, setHasAlreadyTurned] = useState(false);
 
   const goLeft = () => {
     // We check that the snake is not going horizontally and that it did not already turn in the last iteration
@@ -95,8 +99,6 @@ export const useGameLoop = () => {
     }
   };
 
-  const [running, setRunning] = useState(IS_INITIALLY_RUNNING);
-
   // This function hold all the logic to compute the next iteration
   const computeNextHead = () => {
     if (running) {
@@ -123,6 +125,7 @@ export const useGameLoop = () => {
         const newTail = currentTail.slice(1);
         // We add the old head as now part of the tail
         newTail.push(head);
+        return newTail;
       });
       // We move the head
       setHead(nextHead);
@@ -137,5 +140,6 @@ export const useGameLoop = () => {
     head,
     tail,
     apple,
+  
   };
 };
