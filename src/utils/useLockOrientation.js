@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
 import { ScreenOrientation } from 'expo';
-import { Dimensions } from 'react-native';
-import { useGameLoop } from '../Home/useGameLoop';
+import { useEffect } from 'react';
 
 export const useLockOrientation = () => {
   useEffect(() => {
