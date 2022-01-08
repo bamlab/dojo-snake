@@ -15,6 +15,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: NOKIA_COLOR,
     padding: 10,
-    alignItems: 'center',
   },
 });
