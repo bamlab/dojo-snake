@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, Text } from 'react-native';
 import { NOKIA_COLOR } from '../theme';
 import { useLockOrientation } from '../utils/useLockOrientation';
 
 export const Home = () => {
   useLockOrientation();
 
-  return <SafeAreaView style={styles.container} />;
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text>This is a snake to be </Text>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -14,5 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: NOKIA_COLOR,
     padding: 10,
+    alignItems: 'center',
   },
 });
