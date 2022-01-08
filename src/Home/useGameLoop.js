@@ -57,7 +57,10 @@ export const useGameLoop = () => {
     setYSpeed(0);
   };
 
-  const stop = () => setRunning(false);
+  const relaunch = () => {
+    reset();
+    start();
+  };
 
   const goLeft = () => {
     // We check that the snake is not going horizontally and that it did not already turn in the last iteration
