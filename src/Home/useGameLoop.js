@@ -100,12 +100,12 @@ export const useGameLoop = () => {
       setHasAlreadyTurned(false);
       const nextHead = { top: head.top + ySpeed, left: head.left + xSpeed };
       // If the snake will leave the board, we lose
-      if (
+      const nextHeadIsOutside =
         nextHead.top >= GRID_SIZE ||
         nextHead.left >= GRID_SIZE ||
         nextHead.top < 0 ||
-        nextHead.left < 0
-      ) {
+        nextHead.left < 0;
+      if (nextHeadIsOutside) {
         stop();
         return;
       }
