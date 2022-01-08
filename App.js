@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet, View, StatusBar,
-} from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { Home } from './src/Home/Home';
-
 
 export default function App() {
   return (
@@ -15,6 +12,5 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-
   container: { flex: 1 },
 });
