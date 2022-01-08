@@ -11,12 +11,7 @@ export const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
-  },
-  inputContainer: {
-    padding: 20,
-    marginTop: 80,
-    backgroundColor: 'white',
-    borderRadius: 5,
+    backgroundColor: NOKIA_COLOR,
+    padding: 10,
   },
 });
