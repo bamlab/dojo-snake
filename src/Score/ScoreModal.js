@@ -3,14 +3,12 @@ import { Button, Modal, SafeAreaView, ScrollView, StyleSheet, Text, View } from 
 import { NOKIA_COLOR } from '../theme';
 
 export const ScoreModal = ({ visible, close, scores }) => {
-  console.log(scores);
   return (
     <Modal visible={visible} animationType={'slide'}>
       <SafeAreaView style={styles.modal}>
         <Text style={styles.title}>Meilleurs scores</Text>
         <ScrollView style={styles.list}>
           {scores
-            .filter(({ score }) => score > 0)
             .sort((score1, score2) => score2.score - score1.score)
             .map(({ score, name, time }, index) => (
               <Text style={styles.line} key={time}>
