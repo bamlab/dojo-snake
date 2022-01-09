@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, Modal, SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
 import { NOKIA_COLOR } from '../theme';
 
 export const ScoreModal = ({ visible, close, scores }) => {
@@ -9,7 +9,7 @@ export const ScoreModal = ({ visible, close, scores }) => {
         <Text style={styles.title}>Meilleurs scores</Text>
         <ScrollView style={styles.list}>
           {scores
-            .sort((score1, score2) => score2.score - score1.score)
+            ?.sort((score1, score2) => score2.score - score1.score)
             .map(({ score, name, time }, index) => (
               <Text style={styles.line} key={time}>
                 <Text>
