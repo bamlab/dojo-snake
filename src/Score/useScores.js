@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const SCORE_DB_ROOT = 'https://dojo-snake-default-rtdb.europe-west1.firebasedatabase.app';
 
-export const useScores = name => {
+export const useScores = () => {
   const [scores, setScores] = useState([]);
 
   const fetchScores = async () => {
@@ -14,7 +14,11 @@ export const useScores = name => {
   };
 
   const sendScore = score => {
+    try {
     // Send your score to the server !
+    } catch (e) {
+      console.error('Something wrong happened :', e);
+    }
   };
 
   return { fetchScores, scores, sendScore };

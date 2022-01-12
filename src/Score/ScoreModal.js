@@ -9,7 +9,8 @@ export const ScoreModal = ({ visible, close, scores }) => {
         <Text style={styles.title}>Meilleurs scores</Text>
         <ScrollView style={styles.list}>
           {scores
-            ?.sort((score1, score2) => score2.score - score1.score)
+            ?.filter(({ score }) => score > 0)
+            .sort((line1, line2) => line2.score - line1.score)
             .map(({ score, name, time }, index) => (
               <Text style={styles.line} key={time}>
                 <Text>
