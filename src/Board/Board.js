@@ -13,7 +13,6 @@ const Cell = ({ size, position, isApple }) => (
         ...position,
         backgroundColor: isApple ? 'red' : 'black',
         borderColor: isApple ? 'black' : NOKIA_COLOR,
-        zIndex: '-1',
       },
     ]}
   />
@@ -35,7 +34,15 @@ export const Board = ({ size, head, tail, apple }) => {
   });
 
   return (
-    <View style={{ ...styles.board, height: size, aspectRatio: 1 }}>
+    <View
+      style={{
+        borderColor: 'black',
+        borderWidth: 2,
+        alignSelf: 'center',
+        height: size,
+        width: size,
+      }}
+    >
       <Cell size={cellSize} position={applePosition} isApple />
       <Cell size={cellSize} position={headPosition} />
       {tailCells.map((position, index) => (
@@ -46,11 +53,6 @@ export const Board = ({ size, head, tail, apple }) => {
 };
 
 const styles = StyleSheet.create({
-  board: {
-    borderColor: 'black',
-    borderWidth: 2,
-    alignSelf: 'center',
-  },
   cell: {
     position: 'absolute',
     borderWidth: 1,
