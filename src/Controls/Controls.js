@@ -19,10 +19,11 @@ export const Controls = ({ goRight, goLeft, goUp, goDown }) => (
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 50,
-    paddingVertical: 20,
+    padding: 20,
     flex: 1,
     justifyContent: 'center',
+    alignSelf: 'center',
+    width: 250,
   },
   top: {
     flexDirection: 'row',
