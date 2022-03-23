@@ -27,11 +27,14 @@ const styles = StyleSheet.create({
   },
   top: {
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   bottom: {
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   center: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
